@@ -102,30 +102,46 @@ document.querySelector("#answer4").innerHTML = `${oakStrong}`
 //(Problem might possibly require a for each in front of everything as well, to help with filtering)
 //Tried making a global scoped function to call inside of for each, but realized I could just use the action of that function inside
 //of .forEach, by setting it to be a function that takes a function. (kind of like nesting I believe.)
+//tried forEach using the above method, but ran into issues trying to use .filter to pick up the passed items that equalled true.
+//using filter, and then a for loop allowed me to first get into .items, then to target keys on each item passed from there with the for loop,
+//then building a new array to allow .map to function correctly, then returned.
 
 const whatsITB = items
   .filter(function (item) {
     for (let i = 0; i < item.materials.length; i++) {
-      if (item[i] >= 8) {
-        return item
+      theseITB = []
+      if (item.materials.length >= 8) {
+        return theseITB
       }
     }
   })
-  .map(function (item) {
-    if (item === true) {
-      return `<ul>-${item.title}, ${item.materials.length}, ${item.materials.value}</ul>`
-    }
+  .map((item) => {
+    return `<ul>-Name of item: ${item.title}</ul>
+    <ul>-number of items: ${item.materials.length}</ul>
+    <ul>-$${item.price}.00</ul>`
   })
   .join("")
-
-// const lrgRtrns = items
-//   .filter(function (item) {
-//     if (item.material === "GBP") {
-//       return item
-//     }
-//   })
-//   .map((item) => {
-//     console.log(item)
-//     return `${item.title} , $${item.price}.00`
-//   })
 document.querySelector("#answer5").innerHTML = `${whatsITB}`
+console.log(whatsITB)
+//question 6
+//I am going to use .filter to find the value of who_made in each item, and then using .map to make a new array of those that say "i_did".
+//I don't see any blockers heading in this time.
+//I figured that using filter
+//
+//
+//
+//
+//
+
+const whoDonit = items
+  .filter(function (item) {
+    if (item.who_did === "i_did") {
+      return item[i]
+    }
+  })
+  .map((item) => {
+    return `${item}`
+  })
+  .join("")
+document.querySelector("#answer6").innerHTML = `${whoDonit}`
+console.log(whoDonit)
