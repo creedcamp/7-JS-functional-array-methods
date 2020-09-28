@@ -89,7 +89,7 @@ const oakStrong = items
   })
   .map((item) => {
     console.log(item)
-    return `<ul>-${item.title}</ul>`
+    return `<li>-${item.title} is made of wood</li>`
   })
   .join("")
 console.log(oakStrong)
@@ -106,13 +106,18 @@ document.querySelector("#answer4").innerHTML = `${oakStrong}`
 //using filter, and then a for loop allowed me to first get into .items, then to target keys on each item passed from there with the for loop,
 //then building a new array to allow .map to function correctly, then returned.
 
-const whatsITB = items
+// const whatsITB = items.filter(function (item) {
+//   for (let i = 0; i < item.materials.length; i++) {
+//     theseITB = []
+//     if (item.materials.length >= 8) {
+//       return theseITB
+//     }
+//   }
+// })
+const iNC = items
   .filter(function (item) {
-    for (let i = 0; i < item.materials.length; i++) {
-      theseITB = []
-      if (item.materials.length >= 8) {
-        return theseITB
-      }
+    if (item.materials.length >= 8) {
+      return item
     }
   })
   .map((item) => {
@@ -121,27 +126,23 @@ const whatsITB = items
     <ul>-$${item.price}.00</ul>`
   })
   .join("")
-document.querySelector("#answer5").innerHTML = `${whatsITB}`
-console.log(whatsITB)
+document.querySelector("#answer5").innerHTML = `${iNC}`
+console.log(iNC)
 //question 6
 //I am going to use .filter to find the value of who_made in each item, and then using .map to make a new array of those that say "i_did".
 //I don't see any blockers heading in this time.
-//I figured that using filter
-//
-//
+//I figured that using filter i could find and return items that had been made by the seller
+//, but I couldn't seem to get it to later equal the items returned.length as a value, but
+//it keeps coming back undefined.
 //
 //
 //
 
-const whoDonit = items
-  .filter(function (item) {
-    if (item.who_did === "i_did") {
-      return item[i]
-    }
-  })
-  .map((item) => {
-    return `${item}`
-  })
-  .join("")
-document.querySelector("#answer6").innerHTML = `${whoDonit}`
-console.log(whoDonit)
+const whoDonIt = items.filter(function (item) {
+  if (item.who_made == "i_did") {
+    return item
+  }
+}).length
+document.querySelector(
+  "#answer6"
+).innerHTML = `${whoDonIt} where made by their sellers.`
